@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="pl.edu.agh.student.gui.App">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <tabbedpane id="a7662" binding="tabbedPane">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <scrollpane id="99b9a">
+            <constraints>
+              <tabbedpane title="Adding points"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="f3330" class="pl.edu.agh.student.gui.AddPointsPanel" binding="addPointsPanel">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="2bee">
+            <constraints>
+              <tabbedpane title="Range tree"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="baa0c" class="pl.edu.agh.student.gui.RangeTreePanel" binding="rangeTreePanel">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="403d6">
+            <constraints>
+              <tabbedpane title="Associated tree"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="79a70" class="pl.edu.agh.student.gui.BinaryTreePanel" binding="binaryTreePanel">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="75a16">
+            <constraints>
+              <tabbedpane title="Search"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <splitpane id="85af7">
+                <constraints/>
+                <properties>
+                  <orientation value="0"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="698cf" layout-manager="GridLayoutManager" row-count="1" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <splitpane position="left"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="44d8a" class="javax.swing.JTextField" binding="xTextField" default-binding="true">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="40" height="-1"/>
+                            <preferred-size width="21" height="24"/>
+                            <maximum-size width="40" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value="x"/>
+                        </properties>
+                      </component>
+                      <component id="8d518" class="javax.swing.JTextField" binding="x1TextField">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="40" height="-1"/>
+                            <preferred-size width="40" height="-1"/>
+                            <maximum-size width="40" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value="x'"/>
+                        </properties>
+                      </component>
+                      <component id="1812c" class="javax.swing.JTextField" binding="yTextField" default-binding="true">
+                        <constraints>
+                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="40" height="-1"/>
+                            <preferred-size width="40" height="-1"/>
+                            <maximum-size width="40" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value="y"/>
+                        </properties>
+                      </component>
+                      <component id="77ba7" class="javax.swing.JTextField" binding="y1TextField">
+                        <constraints>
+                          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="40" height="-1"/>
+                            <preferred-size width="40" height="-1"/>
+                            <maximum-size width="40" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value="y'"/>
+                        </properties>
+                      </component>
+                      <component id="56a4c" class="javax.swing.JButton" binding="searchButton" default-binding="true">
+                        <constraints>
+                          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="10" height="32"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value="Search"/>
+                        </properties>
+                      </component>
+                      <hspacer id="2c7e4">
+                        <constraints>
+                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </hspacer>
+                    </children>
+                  </grid>
+                  <component id="a59e5" class="pl.edu.agh.student.gui.SearchPanel" binding="searchPanel">
+                    <constraints>
+                      <splitpane position="right"/>
+                    </constraints>
+                    <properties/>
+                  </component>
+                </children>
+              </splitpane>
+            </children>
+          </scrollpane>
+        </children>
+      </tabbedpane>
+      <component id="9ac36" class="javax.swing.JButton" binding="createTreeButton">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <horizontalTextPosition value="11"/>
+          <text value="Create tree"/>
+        </properties>
+      </component>
+      <component id="f1542" class="javax.swing.JButton" binding="clearButton">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Clear"/>
+        </properties>
+      </component>
+      <hspacer id="3c804">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+    </children>
+  </grid>
+</form>
