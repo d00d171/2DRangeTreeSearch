@@ -3,9 +3,12 @@
   <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="600" height="600"/>
     </constraints>
-    <properties/>
+    <properties>
+      <minimumSize width="600" height="600"/>
+      <preferredSize width="600" height="600"/>
+    </properties>
     <border type="none"/>
     <children>
       <tabbedpane id="a7662" binding="tabbedPane">
@@ -30,32 +33,6 @@
               </component>
             </children>
           </scrollpane>
-          <scrollpane id="2bee">
-            <constraints>
-              <tabbedpane title="Range tree"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="baa0c" class="pl.edu.agh.student.gui.RangeTreePanel" binding="rangeTreePanel">
-                <constraints/>
-                <properties/>
-              </component>
-            </children>
-          </scrollpane>
-          <scrollpane id="403d6">
-            <constraints>
-              <tabbedpane title="Associated tree"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="79a70" class="pl.edu.agh.student.gui.BinaryTreePanel" binding="binaryTreePanel">
-                <constraints/>
-                <properties/>
-              </component>
-            </children>
-          </scrollpane>
           <scrollpane id="75a16">
             <constraints>
               <tabbedpane title="Search"/>
@@ -66,6 +43,7 @@
               <splitpane id="85af7">
                 <constraints/>
                 <properties>
+                  <dividerSize value="3"/>
                   <orientation value="0"/>
                 </properties>
                 <border type="none"/>
@@ -128,7 +106,7 @@
                       </component>
                       <component id="56a4c" class="javax.swing.JButton" binding="searchButton" default-binding="true">
                         <constraints>
-                          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="10" height="32"/>
                           </grid>
                         </constraints>
@@ -136,21 +114,52 @@
                           <text value="Search"/>
                         </properties>
                       </component>
-                      <hspacer id="2c7e4">
+                      <hspacer id="bd96e">
                         <constraints>
-                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </hspacer>
                     </children>
                   </grid>
-                  <component id="a59e5" class="pl.edu.agh.student.gui.SearchPanel" binding="searchPanel">
+                  <splitpane id="825e">
                     <constraints>
                       <splitpane position="right"/>
                     </constraints>
-                    <properties/>
-                  </component>
+                    <properties>
+                      <dividerLocation value="300"/>
+                      <dividerSize value="3"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="743b7" class="pl.edu.agh.student.gui.TreeSearchPanel" binding="treeSearchPanel">
+                        <constraints>
+                          <splitpane position="left"/>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="a5bc5" class="pl.edu.agh.student.gui.TreeSearchPanel" binding="selectedSubtreePanel">
+                        <constraints>
+                          <splitpane position="right"/>
+                        </constraints>
+                        <properties/>
+                      </component>
+                    </children>
+                  </splitpane>
                 </children>
               </splitpane>
+            </children>
+          </scrollpane>
+          <scrollpane id="fa279">
+            <constraints>
+              <tabbedpane title="Search results"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="7ff38" class="pl.edu.agh.student.gui.PointSearchPanel" binding="pointsSearchPanel">
+                <constraints/>
+                <properties/>
+              </component>
             </children>
           </scrollpane>
         </children>

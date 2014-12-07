@@ -1,7 +1,9 @@
 package pl.edu.agh.student.gui;
 
-import pl.edu.agh.student.utils.Tree;
-import pl.edu.agh.student.utils.MyNode;
+import pl.edu.agh.student.gui.utils.Position;
+import pl.edu.agh.student.utils.node.MyNode;
+import pl.edu.agh.student.utils.node.RangeTreeNode;
+import pl.edu.agh.student.utils.tree.Tree;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,15 +18,21 @@ public class BinaryTreePanel extends JPanel {
 
     private Tree tree;
 
-    protected Map<Integer, Position> nodesPositions = new HashMap<Integer, Position>();
+    private boolean subtree = true;
 
-    public void initialize(Tree tree) {
+    protected Map<Integer, Position> nodesPositions = new HashMap<Integer, Position>();
+    protected Map<Shape, MyNode> visiblePoints = new HashMap<Shape, MyNode>();
+
+    public void initialize(Tree tree, boolean subtree) {
         this.tree = tree;
+        this.subtree = subtree;
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        nodesPositions.clear();
+        visiblePoints.clear();
         this.g = g;
         drawTree();
     }
@@ -41,6 +49,10 @@ public class BinaryTreePanel extends JPanel {
             Dimension panelSize = getSize();
             drawNode((int) (panelSize.getWidth() / 2), 0, root, null,
                 (int) panelSize.getWidth());
+        } else {
+            g.setColor(Color.RED);
+            g.drawString("Select node of range tree first", (int) getSize().getWidth() / 2 - 40,
+                (int) getSize().getHeight() / 2);
         }
     }
 
@@ -65,13 +77,23 @@ public class BinaryTreePanel extends JPanel {
             drawLine(myX, myY, parentX, parentY);
             drawNode(myX, myY, treeNode.getLeft(), true, width / 2);
             drawNode(myX, myY, treeNode.getRight(), false, width / 2);
-            addVisibleNode(treeNode.getId(), myX, myY);
-            drawCircleWithLabel(value, myX, myY);
+            registerNodePosition(treeNode.getId(), myX, myY);
+
+            visiblePoints
+                .put(drawCircleWithLabel(value, myX, myY, showBold(treeNode)), treeNode);
         }
 
     }
 
-    protected void addVisibleNode(int id, int x, int y) {
+    protected boolean showBold(MyNode treeNode) {
+        boolean boldCircle = false;
+        if (!subtree) {
+            boldCircle = !((RangeTreeNode) treeNode).getAssociatedTree().getRoot().isLeaf();
+        }
+        return boldCircle;
+    }
+
+    protected void registerNodePosition(int id, int x, int y) {
         nodesPositions.put(id, new Position(x, y));
     }
 
@@ -86,7 +108,8 @@ public class BinaryTreePanel extends JPanel {
         g2D.draw(polyline);
     }
 
-    protected Shape drawCircleWithLabel(String label, final int x, final int y, Color... color) {
+    protected Shape drawCircleWithLabel(String label, final int x, final int y, boolean boldCircle,
+        Color... color) {
 
         Ellipse2D s = new Ellipse2D.Double((double) x, (double) y, 30, 30);
 
@@ -101,8 +124,12 @@ public class BinaryTreePanel extends JPanel {
 
         g2D.fill(s);
 
-        g.setColor(Color.blue);
+        g.setColor(Color.BLACK);
+        if (boldCircle) {
+            ((Graphics2D) g).setStroke(new BasicStroke(3));
+        }
         g.drawOval(x, y, (int) s.getWidth(), (int) s.getHeight());
+        ((Graphics2D) g).setStroke(new BasicStroke(1));
 
         int xOffSet = 12;
         if (label.length() == 2) {

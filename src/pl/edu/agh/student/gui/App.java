@@ -1,17 +1,18 @@
 package pl.edu.agh.student.gui;
 
 import pl.edu.agh.student.TreeSearch;
-import pl.edu.agh.student.utils.AssociatedTree;
+import pl.edu.agh.student.utils.common.MyPoint;
+import pl.edu.agh.student.utils.tree.AssociatedTree;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.util.Set;
 
 public class App extends JFrame {
+
+    private App _this = this;
     private JTabbedPane tabbedPane;
-    private RangeTreePanel rangeTreePanel;
     private AddPointsPanel addPointsPanel;
     private JButton createTreeButton;
     private JPanel mainPanel;
@@ -22,8 +23,9 @@ public class App extends JFrame {
     private JTextField yTextField;
     private JTextField y1TextField;
     private JButton searchButton;
-    private BinaryTreePanel binaryTreePanel;
-    private SearchPanel searchPanel;
+    private TreeSearchPanel treeSearchPanel;
+    private TreeSearchPanel selectedSubtreePanel;
+    private PointSearchPanel pointsSearchPanel;
 
     private TreeSearch treeSearch = new TreeSearch();
 
@@ -39,10 +41,7 @@ public class App extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         treeSearch = new TreeSearch();
-
-        prepareRangeTreePanel();
-        preparePointAddingPanel();
-        prepareSearchPanel();
+        addPointsPanel.setTreeSearch(treeSearch);
         prepareButtons();
 
         setVisible(true);
@@ -53,94 +52,97 @@ public class App extends JFrame {
         createTreeButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
                 treeSearch.buildRangeTree();
-                searchPanel.clear();
-                searchPanel.initialize(treeSearch.getRangeTree());
-                rangeTreePanel.repaint();
+                treeSearchPanel.clear();
+                treeSearchPanel.initialize(_this, false);
                 tabbedPane.setSelectedIndex(1);
+                selectedSubtreePanel.clear();
+                pointsSearchPanel.clear();
             }
         });
 
         clearButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
                 treeSearch.clear();
-                rangeTreePanel.clear();
-                binaryTreePanel.clear();
-                searchPanel.clear();
+                treeSearchPanel.clear();
+                selectedSubtreePanel.clear();
+                pointsSearchPanel.clear();
             }
         });
         searchButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
-                try {
-                    Integer x = Integer.valueOf(xTextField.getText());
-                    Integer x1 = Integer.valueOf(x1TextField.getText());
-                    Integer y = Integer.valueOf(yTextField.getText());
-                    Integer y1 = Integer.valueOf(y1TextField.getText());
+                Integer x = getXValue();
+                Integer x1 = getX1Value();
+                Integer y = getYValue();
+                Integer y1 = getY1Value();
 
-                    //DO USUNIECIA JAK BEDZIE SKONCZONE
-                    //searchPanel.addActiveNode(treeSearch.getSplitNode(x, x1));
-                    searchPanel.clear();
-                    searchPanel.initialize(treeSearch.getRangeTree());
+                if (x != null && x1 != null && y != null && y1 != null) {
+                    selectedSubtreePanel.clear();
+                    treeSearchPanel.clear();
 
-                    treeSearch.search(x, x1, y, y1);
+                    treeSearchPanel.initialize(_this, false);
+                    treeSearchPanel.setSpecialNode(treeSearch.getRangeTree().findSplitNode(x, x1));
+                    treeSearchPanel
+                        .addActiveNodes(treeSearch.getRangeTree().oneDimRangeQuery(x, x1));
+                    treeSearchPanel.repaint();
 
-                    searchPanel.setSpecialNode(treeSearch.getSplitNode(x, x1));
-                    searchPanel.addActiveNodes(treeSearch.getRangeQuery(x, x1));
-                    //KONIEC DO USUNIECIA
+                    pointsSearchPanel.clear();
+                    Set<MyPoint> points = treeSearch.search(x, x1, y, y1);
+                    pointsSearchPanel.initialize(treeSearch.getPoints(), points, x, x1, y, y1);
+                    pointsSearchPanel.repaint();
 
-                    searchPanel.repaint();
-
-                } catch (NumberFormatException ex) {
-
+                    tabbedPane.setSelectedIndex(2);
                 }
             }
         });
     }
 
-    public void showRangeTree(AssociatedTree tree) {
-        binaryTreePanel.initialize(tree);
-        tabbedPane.setSelectedIndex(2);
+    private Integer getXValue() {
+        try {
+            return Integer.valueOf(xTextField.getText());
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
-    private void repaintAll() {
-        addPointsPanel.repaint();
-        rangeTreePanel.repaint();
+    private Integer getX1Value() {
+        try {
+            return Integer.valueOf(x1TextField.getText());
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
-    private void prepareSearchPanel() {
-
+    private Integer getYValue() {
+        try {
+            return Integer.valueOf(yTextField.getText());
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
-    private void prepareRangeTreePanel() {
-        rangeTreePanel.initialize(this);
+    private Integer getY1Value() {
+        try {
+            return Integer.valueOf(y1TextField.getText());
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
-    private void preparePointAddingPanel() {
+    public void showAssociatedSearchTree(AssociatedTree tree, boolean search) {
+        selectedSubtreePanel.clear();
+        selectedSubtreePanel.initialize(tree, true);
 
-        addPointsPanel.setTreeSearch(treeSearch);
+        if (search) {
+            Integer y = getYValue();
+            Integer y1 = getY1Value();
 
-        addPointsPanel.addMouseListener(new MouseListener() {
-            @Override public void mouseClicked(MouseEvent e) {
-
+            if (y != null && y1 != null) {
+                selectedSubtreePanel.setSpecialNode(tree.findSplitNode(y, y1));
+                selectedSubtreePanel.addActiveNodes(tree.oneDimRangeQuery(y, y1));
             }
+        }
 
-            @Override public void mousePressed(MouseEvent e) {
-                addPointsPanel.addPoint(e.getX(), e.getY());
-                addPointsPanel.repaint();
-            }
-
-            @Override public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override public void mouseExited(MouseEvent e) {
-
-            }
-        });
-
+        selectedSubtreePanel.repaint();
     }
 
 }

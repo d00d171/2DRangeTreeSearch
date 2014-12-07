@@ -1,4 +1,6 @@
-package pl.edu.agh.student.utils;
+package pl.edu.agh.student.utils.tree;
+
+import pl.edu.agh.student.utils.node.MyNode;
 
 import java.math.BigDecimal;
 import java.util.LinkedList;

@@ -1,4 +1,6 @@
-package pl.edu.agh.student.utils;
+package pl.edu.agh.student.utils.node;
+
+import pl.edu.agh.student.utils.common.MyPoint;
 
 import java.math.BigDecimal;
 

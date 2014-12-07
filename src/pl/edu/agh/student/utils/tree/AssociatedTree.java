@@ -1,7 +1,9 @@
-package pl.edu.agh.student.utils;
+package pl.edu.agh.student.utils.tree;
 
-import java.math.BigDecimal;
-import java.util.LinkedList;
+import pl.edu.agh.student.utils.node.AssociatedTreeNode;
+import pl.edu.agh.student.utils.common.MyPoint;
+import pl.edu.agh.student.utils.common.Utils;
+
 import java.util.List;
 
 public class AssociatedTree extends Tree {

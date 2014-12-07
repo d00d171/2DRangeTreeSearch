@@ -1,4 +1,4 @@
-package pl.edu.agh.student.utils;
+package pl.edu.agh.student.utils.node;
 
 import java.math.BigDecimal;
 

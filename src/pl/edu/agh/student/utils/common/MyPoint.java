@@ -1,7 +1,6 @@
-package pl.edu.agh.student.utils;
+package pl.edu.agh.student.utils.common;
 
 import java.math.BigDecimal;
-import java.util.Comparator;
 
 public class MyPoint {
 
@@ -9,7 +8,7 @@ public class MyPoint {
 
     private BigDecimal y;
 
-    public MyPoint(BigDecimal x, BigDecimal y){
+    public MyPoint(BigDecimal x, BigDecimal y) {
         this.x = x;
         this.y = y;
     }
@@ -33,8 +32,8 @@ public class MyPoint {
     @Override
     public String toString() {
         return "MyPoint{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+            "x=" + x +
+            ", y=" + y +
+            '}';
     }
 }

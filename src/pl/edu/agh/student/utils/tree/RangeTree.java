@@ -1,4 +1,10 @@
-package pl.edu.agh.student.utils;
+package pl.edu.agh.student.utils.tree;
+
+import pl.edu.agh.student.utils.common.MyPoint;
+import pl.edu.agh.student.utils.common.Utils;
+import pl.edu.agh.student.utils.node.AssociatedTreeNode;
+import pl.edu.agh.student.utils.node.MyNode;
+import pl.edu.agh.student.utils.node.RangeTreeNode;
 
 import java.util.HashSet;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package pl.edu.agh.student.gui;
+package pl.edu.agh.student.gui.utils;
 
 public class Position {
 

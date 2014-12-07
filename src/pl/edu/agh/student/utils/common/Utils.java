@@ -1,4 +1,4 @@
-package pl.edu.agh.student.utils;
+package pl.edu.agh.student.utils.common;
 
 import java.math.BigDecimal;
 import java.util.Collections;

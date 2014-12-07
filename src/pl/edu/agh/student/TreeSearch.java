@@ -1,9 +1,8 @@
 package pl.edu.agh.student;
 
 import pl.edu.agh.student.gui.App;
-import pl.edu.agh.student.utils.MyNode;
-import pl.edu.agh.student.utils.MyPoint;
-import pl.edu.agh.student.utils.RangeTree;
+import pl.edu.agh.student.utils.common.MyPoint;
+import pl.edu.agh.student.utils.tree.RangeTree;
 
 import java.math.BigDecimal;
 import java.util.LinkedList;
@@ -35,16 +34,6 @@ public class TreeSearch {
 
     public Set<MyPoint> search(int x, int x1, int y, int y1) {
         Set<MyPoint> result = rangeTree.twoDimRangeQuery(x, x1, y, y1);
-        System.out.println(result);
-        return result;
-    }
-
-    public MyNode getSplitNode(int a, int b) {
-        return rangeTree.findSplitNode(a, b);
-    }
-
-    public List<MyNode> getRangeQuery(int a, int b) {
-        List<MyNode> result = rangeTree.oneDimRangeQuery(a, b);
         return result;
     }
 
